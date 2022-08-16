@@ -3,7 +3,7 @@ if __name__ == '__main__':
 
     from load_data import get_samples_filenames, get_sample_pairs
 
-    parser = argparse.ArgumentParser(description='Process pyramidal TIF samples.')
+    parser = argparse.ArgumentParser(description='Get all combinations of sample pairs.')
     parser.add_argument('-s', '--source', type=str, help='Source directory of the samples')
     parser.add_argument('-o', '--output', type=str, help='Output directory of the txt containing the pairs')
     parser.add_argument('-t', '--tag', type=str, help='Tag to be used to identify H&E samples (e.g. "HE")', default='HE')

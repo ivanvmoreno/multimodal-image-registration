@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Callable
 
 from dotenv import load_dotenv
+import PIL
 
 load_dotenv()
 
@@ -14,16 +15,15 @@ if os.name == 'nt' and hasattr(os, 'add_dll_directory'):
 else:
     import openslide
 
-from PIL import Image
-
 
 def load_resize_store(
-    source: str, out: str, suffix: str, size: tuple, resample = None, max_img_px = 1000000000):
+    source: str, out: str, size: tuple, suffix = None, 
+        resample = PIL.Image.BICUBIC, max_img_px = 1000000000):
     '''Load an image sample, resize it and store it in an output directory
 
     :param source: Absolute path to the image samples
     :type source: str
-    :param out: Absolute path to the outination folder
+    :param out: Absolute path to the output directory
     :type out: str
     :param suffix: Image suffix
     :type suffix: str
@@ -33,17 +33,15 @@ def load_resize_store(
     :type resample: str
     '''
     # Set max image size
-    Image.MAX_IMAGE_PIXELS = max_img_px
-
+    PIL.Image.MAX_IMAGE_PIXELS = max_img_px
     # Load image sample
-    with Image.open(source) as img:
+    with PIL.Image.open(source) as img:
         # Resize image and store it in the output directory
         img = img.resize(size, resample)
-        filename, ext = source.split('/')[-1].split('.')
-        img.save(f'{out}/{filename}_{suffix}.{ext}')
+        store_sample(img, *get_filename_extension(source), out, suffix)
 
 
-def load_store_tif_page(
+def load_tif_page(
     source: str, out: str, level = 'lowest', suffix: str = 'level'):
     '''Load an TIF sample level and store it in an output directory
 
@@ -60,24 +58,18 @@ def load_store_tif_page(
     try:
         # Open TIF file
         img = openslide.OpenSlide(source)
-
         # Set TIF level to load
         if level == 'lowest':
             level = img.level_count - 1
-            
         # Set output filename suffix
-        if suffix is None:
-            suffix = ''
-        else:
+        if suffix is not None:
             f'_L{level}' if suffix == 'level' else f'_{suffix}'
-
         # Load TIF page and store it in the output directory
         img = img.read_region((0, 0), level, img.level_dimensions[level])
-        filename, ext = source.split('/')[-1].split('.')
-        img.save(os.path.join(out, f'{filename}{suffix}.{ext}'))
+        store_sample(img, *get_filename_extension(source), out, suffix)
     except openslide.lowlevel.OpenSlideUnsupportedFormatError as e:
         print(f'Error processing {source} \n {e}')
-    
+
 
 def bulk_process_samples(
     source: str, out: str, samples: list, fun: Callable, *fargs):
@@ -104,3 +96,34 @@ def bulk_process_samples(
 
     # Close multithreading pool
     pool.close()
+
+
+def store_sample(sample: PIL.Image, filename: str, ext: str, out: str, suffix=None):
+    '''Store a sample in an output directory
+    
+    :param sample: PIL.Image object
+    :type sample: PIL.Image
+    :param source: Absolute path of the image samples
+    :type source: str
+    :param ext: Image extension
+    :type ext: str
+    :param out: Absolute path to the output directory
+    :type out: str
+    '''
+    # Check that output directory exists
+    Path(out).mkdir(parents=True, exist_ok=True)
+    # Set output filename suffix
+    suffix = f'_{suffix}' if suffix is not None else ''
+    # Store sample to disk
+    sample.save(os.path.join(out, f'{filename}{suffix}.{ext}'))
+
+
+def get_filename_extension(source: str):
+    '''Get a given file's name and extension
+    
+    :param source: Absolute path to the file
+    :type source: str
+    :return: Filename and extension
+    :rtype: tuple
+    '''
+    return source.split('/')[-1].split('.')
