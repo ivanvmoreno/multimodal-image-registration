@@ -1,3 +1,4 @@
+from itertools import combinations
 from os import listdir
 from os.path import isfile, join
 from random import shuffle
@@ -41,14 +42,41 @@ def get_samples_filenames(path, res = None, ext = 'tif'):
     # return [f for f in filenames if res in f and any([f'{t}_' in f for t in types])]
 
 
-def get_sample_pairs(filenames):
-    '''Returns a list of sample pairs from a given bag of samples
+def get_sample_pairs(samples, tag = 'HE', ext = 'auto'):
+    '''Returns a list of all possible combinations of sample pairs / groups 
+        from a given bag of samples
 
-    :param filenames: List of sample filenames
-    :type filenames: list
-    :return: List of tuples containing sample pairs filenames
+    :param samples: List of sample samples
+    :type samples: list
+    :param tag: Tag to be used to identify H&E samples
+    :type tag: str
+    :param ext: Samples extension. Defaults to 'auto', and assumes homogeneous 
+        file extensions for all samples
+    :type ext: str
+    :return: List of tuples containing sample pairs
     :rtype: list
     '''
-    sample_ids = [f.split('_')[0] for f in filenames]
-    pairs = [tuple([f for f in filenames if f'{id}_' in f]) for id in sample_ids]
-    return [p for p in pairs if len(p) == 2]
+    pairs = {}
+    comb = []
+
+    if ext == 'auto':
+        ext = samples[0].split('.')[-1]
+
+    # Get all sample groups
+    for f in samples:
+        # Get sample anonimized ID
+        uid = f.split('_')[0]
+        if uid not in pairs:
+            pairs[uid] = [f]
+        else:
+            pairs[uid].append(f)
+
+    # Generate all sample combinations
+    for k, v in pairs.items():
+        # Only return paired / grouped samples
+        if len(v) == 2:
+            comb.append(v)
+        # Return all possible combinations of the group
+        else:
+            comb += [(f'{k}_{tag}.{ext}', _) for _ in v if f'{tag}.{ext}' not in _]
+    return comb
