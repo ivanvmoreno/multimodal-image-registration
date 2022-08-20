@@ -74,9 +74,7 @@ def get_sample_pairs(samples, tag = 'HE', ext = 'auto'):
     # Generate all sample combinations
     for k, v in pairs.items():
         # Only return paired / grouped samples
-        if len(v) == 2:
-            comb.append(v)
-        # Return all possible combinations of the group
-        else:
+        if len(v) >= 2:
+            # Store all possible combinations of the group
             comb += [(f'{k}_{tag}.{ext}', _) for _ in v if f'{tag}.{ext}' not in _]
     return comb

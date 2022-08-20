@@ -41,7 +41,7 @@ def load_resize_store(
         store_sample(img, *get_filename_extension(source), out, suffix)
 
 
-def load_tif_page(
+def load_store_tif_page(
     source: str, out: str, level = 'lowest', suffix: str = 'level'):
     '''Load an TIF sample level and store it in an output directory
 
