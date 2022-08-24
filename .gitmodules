@@ -1,0 +1,6 @@
+[submodule "source/TransMorph"]
+	path = source/TransMorph
+	url = git@github.com:ivanvmoreno/TransMorph_Transformer_for_Medical_Image_Registration.git
+[submodule "source/SymTrans"]
+	path = source/SymTrans
+	url = git@github.com:ivanvmoreno/SymTrans.git
