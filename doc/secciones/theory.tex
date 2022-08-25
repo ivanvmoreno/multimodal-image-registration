@@ -7,10 +7,25 @@
 
 \section{Problem Definition}
 \label{problem-definition}
-The problem of image registration is defined as... (insert equation)
+The problem of image registration is an optimization problem, and its candidate solutions are all the possible transformations that maximize or, equivalently, minimize a chosen (di)similarity measure that quantifies the image similarity between the fixed and moving image; poses as the target function.
 
-\section{Displacement Fields}
-\label{displacement-fields}
+Depending on the particular problem setting (e.g. deformable registration), we will either face a linear or nonlinear optimization problem, which will affect the possible solution strategies.
+
+\section{Mono and Multi-modal Image Registration}
+\label{mono-multimodal-registration}
+
+\section{Rigid and Non-rigid Registration}
+\label{image-a}
+The rigid registration setting, the resulting transformation is expressed as a matrix mapping each point of the moving image to the target / fixed image. The possible transformations expressed by the matrix are rigid and affine transformations. Rigid transformations are limited to rotations and translations, and affine transformations extend the rigid setting, allowing for stretching and skewing.
+
+In the non-rigid case, limitations are lifted, and allows for arbitrary mappings of individual image pixels, producing displacement fields. 
+
+The problem with displacement fields is that, depending on the setting, only a subset of all possible transformations are indeed plausible, so the definition is extended to accomodate for this. A particular deformation is said to be plausible if the pixel movement is smooth, simulating natural elastic deformation.
+
+Usually, regularization techniques are employed in order to enforce the aforementioned properties.
+
+\section{Image Warping}
+\label{image-warping}
 
 \section{Diffeomorphism}
 \label{Diffeomorphism}
@@ -36,6 +51,10 @@ Transformers were introduced ...
 
 Currently, state of the art in sequence processing, tasks such as NLP...
 
+Encoder vs Decoder.
+
+
+
 \subsection{Mechanism of Self-attention}
 \label{self-attention}
 
@@ -43,6 +62,7 @@ When using transformers, the input sequence is tokenized, obtaining a set of tok
 
 
 The next step is the projection of the tokens into a distributed geometrical space of continuous-valued vectors - what is referred to as an embedding. This is done in order to preserve the semantical relationships among the tokens.
+
 In this low-dimensional space, we expect that the projections of the original tokens which hold stronger semantic relationships with each other are, indeed, closer to each other than their counterparts.
 
 
@@ -86,6 +106,12 @@ The softmax outputs a probability distribution, with all of its components addin
 
 This concept of self-attention is further developed with multi-headed attention.
 
+\subsection{Encoder Block}
+\label{encoder-block}
+
+\subsection{Decoder Block}
+\label{decoder-block}
+
 \subsection{Multi-head Self-attention}
 \label{multihead-self-attention}
 
@@ -93,6 +119,41 @@ With multi-headed attention, we repeat the original self-attention process, obta
 multiple sets of query, key and value matrices. Theoretically, this allows the model to perform attention in different, independent low-dimensional spaces, which
 translates to the ability to jointly perform attention from different representation subspaces, at different positions.
 
-\section{Visual transformers}
-\label{visual-transformers}
+\section{Vision Transformers}
+\label{vision-transformers}
+
+In \cite{Dosovitskiy2021-be}, vision transformers are introduced.
+
+- Parallelizable
+- Bigger receptive fields compared to CNN
+
+\begin{figure}[h!]
+    \includegraphics{vision-transformer-diagram}
+    \caption{Diagram of Vision Transformer. Adapted from \citenum{Dosovitskiy2021-be}}
+    \label{fig:vision-transformer-diagram}
+\end{figure}
+
+In order for a transformer network to be able to handle 2D images, they propose a method to convert 2D images into sequences by splitting the original image into smaller 2D patches, which are then further processed as described in \ref{encoder-block}.
+
+Formally, the original image $x \in \mathbb{R}^{H \times W \times C}$ is reshaped into a sequence of flattened 2D patches $x_p \in \mathbb{R}^{N \times P^2 \cdot C}$, where $(H,W)$ is the original resolution of the image, $C$ denotes the number of channels, $(P,P)$ is the patch resolution, and $N=HW/P^2$ is the total patch number (i.e. sequence length).
+
+Also, the paper explores the possibility of feature maps obtained from a CNN as the input sequence, as an alternative to the aforementioned image patches.
+
+In terms of the positional embeddings, they employ 1D positional embeddings. They also tried using 2D positional encodings without showing any further improvements in the model's performance.
+
+One of the most important discoveries of the paper is that, upon inspection, the attention distance (i.e. average distance in image space across which information is integrated), analogous to the receptive field size of CNNs, is far greater than in its counterpart. 
+
+\begin{figure}[h!]
+    \includegraphics{image-self-attention}
+    \caption{Visualization of Self-Attention on Input Images. Reproduced from \citenum{Dosovitskiy2021-be}}
+    \label{fig:image-self-attention}
+\end{figure}
+
+The results empirically confirm that the ability of performing of global attention, enabled by the self-attention mechanism, is used by the model in practice, where some of the attention heads attend most of the image already in the lower layers.
+
+\subsection{SymTrans}
+\label{symtrans}
+
+\subsection{TransMorph}
+\label{transmorph}
 

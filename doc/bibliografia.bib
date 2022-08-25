@@ -1,7 +1,119 @@
-@inproceedings{goodfellow2014generative,
-  title={Generative adversarial nets},
-  author={Goodfellow, Ian and Pouget-Abadie, Jean and Mirza, Mehdi and Xu, Bing and Warde-Farley, David and Ozair, Sherjil and Courville, Aaron and Bengio, Yoshua},
-  booktitle={Advances in neural information processing systems},
-  pages={2672--2680},
-  year={2014}
+@MISC{Dosovitskiy2021-be,
+  title    = "An Image is Worth 16x16 Words: Transformers for Image Recognition
+              at Scale",
+  author   = "Dosovitskiy, Alexey and Beyer, Lucas and Kolesnikov, Alexander
+              and Weissenborn, Dirk and Zhai, Xiaohua and Unterthiner, Thomas
+              and Dehghani, Mostafa and Minderer, Matthias and Heigold, Georg
+              and Gelly, Sylvain and Uszkoreit, Jakob and Houlsby, Neil",
+  abstract = "While the Transformer architecture has become the de-facto
+              standard for natural language processing tasks, its applications
+              to computer vision remain limited. In vision, attention is either
+              applied in conjunction with convolutional networks, or used to
+              replace certain components of convolutional networks while
+              keeping their overall structure in place. We show that this
+              reliance on CNNs is not necessary and a pure transformer applied
+              directly to sequences of image patches can perform very well on
+              image classification tasks. When pre-trained on large amounts of
+              data and transferred to multiple mid-sized or small image
+              recognition benchmarks (ImageNet, CIFAR-100, VTAB, etc.), Vision
+              Transformer (ViT) attains excellent results compared to
+              state-of-the-art convolutional networks while requiring
+              substantially fewer computational resources to train.",
+  month    =  jun,
+  year     =  2021
+}
+
+@MISC{Vaswani2017-mh,
+  title    = "Attention Is All You Need",
+  author   = "Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit,
+              Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, Lukasz and
+              Polosukhin, Illia",
+  abstract = "The dominant sequence transduction models are based on complex
+              recurrent or convolutional neural networks that include an
+              encoder and a decoder. The best performing models also connect
+              the encoder and decoder through an attention mechanism. We
+              propose a new simple network architecture, the Transformer, based
+              solely on attention mechanisms, dispensing with recurrence and
+              convolutions entirely. Experiments on two machine translation
+              tasks show these models to be superior in quality while being
+              more parallelizable and requiring signiﬁcantly less time to
+              train. Our model achieves 28.4 BLEU on the WMT 2014
+              Englishto-German translation task, improving over the existing
+              best results, including ensembles, by over 2 BLEU. On the WMT
+              2014 English-to-French translation task, our model establishes a
+              new single-model state-of-the-art BLEU score of 41.8 after
+              training for 3.5 days on eight GPUs, a small fraction of the
+              training costs of the best models from the literature. We show
+              that the Transformer generalizes well to other tasks by applying
+              it successfully to English constituency parsing both with large
+              and limited training data.",
+  month    =  dec,
+  year     =  2017,
+  language = "en"
+}
+
+@ARTICLE{Junyu_Chen2021-ml,
+  title    = "{TransMorph}: Transformer for unsupervised medical image
+              registration",
+  author   = "{Junyu Chen} and {Yong Du} and {Yufan He} and {W. Paul Segars}
+              and {Ye Li} and {Eirc C. Frey}",
+  abstract = "In the last decade, convolutional neural networks (ConvNets) have
+              been a major focus of research in medical image analysis.
+              However, the performances of ConvNets may be limited by a lack of
+              explicit consideration of the long-range spatial relationships in
+              an image. Recently Vision Transformer architectures have been
+              proposed to address the shortcomings of ConvNets and have
+              produced state-of-the-art performances in many medical imaging
+              applications. Transformers may be a strong candidate for image
+              registration because their unlimited receptive field enables a
+              more precise comprehension of the spatial correspondence between
+              moving and fixed images. Here, we present TransMorph, a hybrid
+              Transformer-ConvNet model for volumetric medical image
+              registration. This paper also presents diffeomorphic and Bayesian
+              variants of TransMorph: the diffeomorphic variants ensure the
+              topology-preserving deformations, and the Bayesian variant
+              produces a well-calibrated registration uncertainty estimate. We
+              extensively validated the proposed models using 3D medical images
+              from three applications: inter-patient and atlas-to-patient brain
+              MRI registration and phantom-to-CT registration. The proposed
+              models are evaluated in comparison to a variety of existing
+              registration methods and Transformer architectures. Qualitative
+              and quantitative results demonstrate that the proposed
+              Transformer-based model leads to a substantial performance
+              improvement over the baseline methods, confirming the
+              effectiveness of Transformers for medical image registration.",
+  journal  = "ArXiv",
+  year     =  2021
+}
+
+@ARTICLE{Mingrui_Ma2022-ug,
+  title    = "Symmetric Transformer-based Network for Unsupervised Image
+              Registration",
+  author   = "{Mingrui Ma} and {Lei Song} and {Yu-Lan Xu} and {Gui-Xian Liu}",
+  abstract = "Medical image registration is a fundamental and critical task in
+              medical image analysis. With the rapid development of deep
+              learning, convolutional neural networks (CNN) have dominated the
+              medical image registration ﬁeld. Due to the disadvantage of the
+              local receptive ﬁeld of CNN, some recent registration methods
+              have focused on using transformers for non-local registration.
+              However, the standard Transformer has a vast number of parameters
+              and high computational complexity, which causes Transformer can
+              only be applied at the bottom of the registration models. As a
+              result, only coarse information is available at the lowest
+              resolution, limiting the contribution of Transformer in their
+              models. To address these challenges, we propose a
+              convolution-based efﬁcient multi-head self-attention (CEMSA)
+              block, which reduces the parameters of the traditional
+              Transformer and captures local spatial context information for
+              reducing semantic ambiguity in the attention mechanism. Based on
+              the proposed CEMSA, we present a novel Symmetric
+              Transformer-based model (SymTrans). SymTrans employs the
+              Transformer blocks in the encoder and the decoder respectively to
+              model the long-range spatial cross-image relevance. We apply
+              SymTrans to the displacement ﬁeld and diffeomorphic registration.
+              Experimental results show that our proposed method achieves
+              state-of-the-art performance in image registration. Our code is
+              publicly available at https://github.com/MingR-Ma/SymTrans .",
+  journal  = "ArXiv",
+  year     =  2022
 }
