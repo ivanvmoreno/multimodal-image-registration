@@ -1,0 +1,11 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\astroncite{Goodfellow
+  et~al.}{2014}]{goodfellow2014generative}
+Goodfellow, I., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair,
+  S., Courville, A., y Bengio, Y. (2014).
+\newblock Generative adversarial nets.
+\newblock In {\em Advances in neural information processing systems}, pages
+  2672--2680.
+
+\end{thebibliography}
