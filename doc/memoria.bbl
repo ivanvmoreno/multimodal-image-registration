@@ -7,4 +7,31 @@ Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X.,
 \newblock An image is worth 16x16 words: Transformers for image recognition at
   scale.
 
+\bibitem[\protect\astroncite{Huang et~al.}{2016}]{Huang2016-np}
+Huang, G., Sun, Y., Liu, Z., Sedra, D., y Weinberger, K. (2016).
+\newblock Deep networks with stochastic depth.
+
+\bibitem[\protect\astroncite{Jaderberg et~al.}{2015}]{Jaderberg2015-kg}
+Jaderberg, M., Simonyan, K., Zisserman, A., y Kavukcuoglu, K. (2015).
+\newblock Spatial transformer networks.
+
+\bibitem[\protect\astroncite{{Mingrui Ma} et~al.}{2022}]{Mingrui_Ma2022-ug}
+{Mingrui Ma}, {Lei Song}, {Yu-Lan Xu}, y {Gui-Xian Liu} (2022).
+\newblock Symmetric transformer-based network for unsupervised image
+  registration.
+\newblock {\em ArXiv}.
+
+\bibitem[\protect\astroncite{Wang}{2018}]{Wang2018-ks}
+Wang, C.-F. (2018).
+\newblock A basic introduction to separable convolutions.
+\newblock
+  \url{https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728}.
+\newblock Accessed: 2022-8-26.
+
+\bibitem[\protect\astroncite{Wang et~al.}{2021}]{Wang2021-kw}
+Wang, W., Xie, E., Li, X., Fan, D.-P., Song, K., Liang, D., Lu, T., Luo, P., y
+  Shao, L. (2021).
+\newblock Pyramid vision transformer: A versatile backbone for dense prediction
+  without convolutions.
+
 \end{thebibliography}

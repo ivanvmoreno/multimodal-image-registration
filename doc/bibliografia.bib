@@ -117,3 +117,119 @@
   journal  = "ArXiv",
   year     =  2022
 }
+
+
+@MISC{Wang2018-ks,
+  title        = "A Basic Introduction to Separable Convolutions",
+  booktitle    = "Towards Data Science",
+  author       = "Wang, Chi-Feng",
+  abstract     = "Explaining spatial separable convolutions, depthwise
+                  separable convolutions, and the use of 1x1 kernels in a
+                  simple manner.",
+  month        =  aug,
+  year         =  2018,
+  howpublished = "\url{https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728}",
+  note         = "Accessed: 2022-8-26",
+  language     = "en"
+}
+
+
+@ARTICLE{Wang2021-kw,
+  title         = "Pyramid Vision Transformer: A Versatile Backbone for Dense
+                   Prediction without Convolutions",
+  author        = "Wang, Wenhai and Xie, Enze and Li, Xiang and Fan, Deng-Ping
+                   and Song, Kaitao and Liang, Ding and Lu, Tong and Luo, Ping
+                   and Shao, Ling",
+  abstract      = "Although using convolutional neural networks (CNNs) as
+                   backbones achieves great successes in computer vision, this
+                   work investigates a simple backbone network useful for many
+                   dense prediction tasks without convolutions. Unlike the
+                   recently-proposed Transformer model (e.g., ViT) that is
+                   specially designed for image classification, we propose
+                   Pyramid Vision Transformer~(PVT), which overcomes the
+                   difficulties of porting Transformer to various dense
+                   prediction tasks. PVT has several merits compared to prior
+                   arts. (1) Different from ViT that typically has
+                   low-resolution outputs and high computational and memory
+                   cost, PVT can be not only trained on dense partitions of the
+                   image to achieve high output resolution, which is important
+                   for dense predictions but also using a progressive shrinking
+                   pyramid to reduce computations of large feature maps. (2)
+                   PVT inherits the advantages from both CNN and Transformer,
+                   making it a unified backbone in various vision tasks without
+                   convolutions by simply replacing CNN backbones. (3) We
+                   validate PVT by conducting extensive experiments, showing
+                   that it boosts the performance of many downstream tasks,
+                   e.g., object detection, semantic, and instance segmentation.
+                   For example, with a comparable number of parameters,
+                   RetinaNet+PVT achieves 40.4 AP on the COCO dataset,
+                   surpassing RetinNet+ResNet50 (36.3 AP) by 4.1 absolute AP.
+                   We hope PVT could serve as an alternative and useful
+                   backbone for pixel-level predictions and facilitate future
+                   researches. Code is available at
+                   https://github.com/whai362/PVT.",
+  month         =  feb,
+  year          =  2021,
+  archivePrefix = "arXiv",
+  primaryClass  = "cs.CV",
+  eprint        = "2102.12122"
+}
+
+@ARTICLE{Huang2016-np,
+  title         = "Deep Networks with Stochastic Depth",
+  author        = "Huang, Gao and Sun, Yu and Liu, Zhuang and Sedra, Daniel and
+                   Weinberger, Kilian",
+  abstract      = "Very deep convolutional networks with hundreds of layers
+                   have led to significant reductions in error on competitive
+                   benchmarks. Although the unmatched expressiveness of the
+                   many layers can be highly desirable at test time, training
+                   very deep networks comes with its own set of challenges. The
+                   gradients can vanish, the forward flow often diminishes, and
+                   the training time can be painfully slow. To address these
+                   problems, we propose stochastic depth, a training procedure
+                   that enables the seemingly contradictory setup to train
+                   short networks and use deep networks at test time. We start
+                   with very deep networks but during training, for each
+                   mini-batch, randomly drop a subset of layers and bypass them
+                   with the identity function. This simple approach complements
+                   the recent success of residual networks. It reduces training
+                   time substantially and improves the test error significantly
+                   on almost all data sets that we used for evaluation. With
+                   stochastic depth we can increase the depth of residual
+                   networks even beyond 1200 layers and still yield meaningful
+                   improvements in test error (4.91\% on CIFAR-10).",
+  month         =  mar,
+  year          =  2016,
+  archivePrefix = "arXiv",
+  primaryClass  = "cs.LG",
+  eprint        = "1603.09382"
+}
+
+
+@ARTICLE{Jaderberg2015-kg,
+  title         = "Spatial Transformer Networks",
+  author        = "Jaderberg, Max and Simonyan, Karen and Zisserman, Andrew and
+                   Kavukcuoglu, Koray",
+  abstract      = "Convolutional Neural Networks define an exceptionally
+                   powerful class of models, but are still limited by the lack
+                   of ability to be spatially invariant to the input data in a
+                   computationally and parameter efficient manner. In this work
+                   we introduce a new learnable module, the Spatial
+                   Transformer, which explicitly allows the spatial
+                   manipulation of data within the network. This differentiable
+                   module can be inserted into existing convolutional
+                   architectures, giving neural networks the ability to
+                   actively spatially transform feature maps, conditional on
+                   the feature map itself, without any extra training
+                   supervision or modification to the optimisation process. We
+                   show that the use of spatial transformers results in models
+                   which learn invariance to translation, scale, rotation and
+                   more generic warping, resulting in state-of-the-art
+                   performance on several benchmarks, and for a number of
+                   classes of transformations.",
+  month         =  jun,
+  year          =  2015,
+  archivePrefix = "arXiv",
+  primaryClass  = "cs.CV",
+  eprint        = "1506.02025"
+}

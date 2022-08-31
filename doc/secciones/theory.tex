@@ -100,7 +100,7 @@ Self-attention with matrices
 First, we obtain the query, key and value matrices by multiplying the embedding matrix with the learned weight matrices WQ, WK, WV.
 Each of the rows of the embedding matrix corresponds to a token of the input sequence.
 
-$$softmax(\frac{Q x K^T}{\sqrt{d_k}}) V = Z$$
+$$softmax(\frac{Q K^T}{\sqrt{d_k}}) V = Z$$
 
 The softmax outputs a probability distribution, with all of its components adding to one.
 
@@ -127,7 +127,7 @@ In \cite{Dosovitskiy2021-be}, vision transformers are introduced.
 - Parallelizable
 - Bigger receptive fields compared to CNN
 
-\begin{figure}[h!]
+\begin{figure}
     \includegraphics{vision-transformer-diagram}
     \caption{Diagram of Vision Transformer. Adapted from \citenum{Dosovitskiy2021-be}}
     \label{fig:vision-transformer-diagram}
@@ -144,16 +144,80 @@ In terms of the positional embeddings, they employ 1D positional embeddings. The
 One of the most important discoveries of the paper is that, upon inspection, the attention distance (i.e. average distance in image space across which information is integrated), analogous to the receptive field size of CNNs, is far greater than in its counterpart. 
 
 \begin{figure}[h!]
-    \includegraphics{image-self-attention}
+    \includegraphics[width=1.0\textwidth]{image-self-attention}
     \caption{Visualization of Self-Attention on Input Images. Reproduced from \citenum{Dosovitskiy2021-be}}
     \label{fig:image-self-attention}
 \end{figure}
 
 The results empirically confirm that the ability of performing of global attention, enabled by the self-attention mechanism, is used by the model in practice, where some of the attention heads attend most of the image already in the lower layers.
 
-\subsection{SymTrans}
+\section{SymTrans}
 \label{symtrans}
 
-\subsection{TransMorph}
-\label{transmorph}
+\subsection{Convolution-based Efficient Multi-head Self-attention (CEMSA)}
+\label{cemsa-block}
+Due to the large number of parameters of transformer blocks...
+
+Depth-wise separable and grouped convolution.
+
+$$x^{q,k,v}=Flatten(Conv3D(Reshape(x),s))$$,
+where $x$ is the input token to the CEMSA block.
+
+The positional embedding is removed, in order to further reduce the total parameters.
+
+Depth-wise separable convolutional operations are used in order to capture the local features of the input images, and also compress memory and parameters.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{depthwise-convolution}
+    \caption{Visualization of Depth-wise Convolution. Reproduced from \citenum{Wang2018-ks}}
+    \label{fig:depthwise-convolution}
+\end{figure}
+
+Depth-wise convolution is applied by using a single convolutional filter for each input channel. After convolving each input channel with its filter, the resulting feature maps are stacked along the dimension axis. 
+
+depthwise convolution applies a single convolutional filter per each input channel and pointwise convolution is used to create a linear combination of the output of the depthwise convolution. https://paperswithcode.com/method/depthwise-separable-convolution
+
+The grouped convolution is 1/g of the filters is applied to each 1/g of the input
+
+The grouped convolution is employed to reduce the parameters before the linear projections, in a magnitude of $1/g$.
+
+In \cite{Dosovitskiy2021-be}, it is already mentioned that replacing image patches with feature maps obtained from a CNN is a possibility.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{cemsa-block}
+    \caption{Visualization of CEMSA block. Reproduced from \citenum{Mingrui_Ma2022-ug}}
+    \label{fig:cemsa-block}
+\end{figure}
+
+Spatial-reduction ratio that reduces the size of image via Conv. (sr-ratio)
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{spatial-reduction}
+    \caption{Comparison of Multi-Head Attention and Spatial Reduction Attention. Reproduced from \citenum{Wang2021-kw}}
+    \label{fig:spatial-reduction-attention}
+\end{figure}
+
+Spatial Reduction Attention
+Reduces the spatial scale of the key and value before the attention operation, in order to reduce the computational and memory overhead of the operation.
+
+https://paperswithcode.com/method/spatial-reduction-attention
+
+DropPath is dropping an entire sample from the batch, which effectively results in stochastic depth when used as in Eq. 2 of their paper. On the other hand, Dropout is dropping random values, as expected (from the docs):
+
+Stochastic depth mentioned in \cite{Huang2016-np}
+
+https://www.youtube.com/watch?v=fEVyfT-gLqQ
+
+
+Permutation equivariant transformer thanks to attention mechanism.
+
+TODO: Still don't fully understand decoder part
+
+Spatial Transformer Networks \cite{Jaderberg2015-kg}
+The idea behind standard transformer blocks is to make the network spatially invariant, seeking the disentanglement of object pose and part deformation from texture and shape.
+
+Stationary Velocity Field, scaling and squaring approach
 

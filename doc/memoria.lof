@@ -1,8 +1,11 @@
 \babel@toc {spanish}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Diagram of Vision Transformer. Adapted from \citenum {Dosovitskiy2021-be}}}{8}{figure.2.1}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Visualization of Self-Attention on Input Images. Reproduced from \citenum {Dosovitskiy2021-be}}}{9}{figure.2.2}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Diagram of Vision Transformer. Adapted from \citenum {Dosovitskiy2021-be}}}{9}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Visualization of Self-Attention on Input Images. Reproduced from \citenum {Dosovitskiy2021-be}}}{10}{figure.2.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Visualization of Depth-wise Convolution. Reproduced from \citenum {Wang2018-ks}}}{11}{figure.2.3}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Visualization of CEMSA block. Reproduced from \citenum {Mingrui_Ma2022-ug}}}{11}{figure.2.4}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Comparison of Multi-Head Attention and Spatial Reduction Attention. Reproduced from \citenum {Wang2021-kw}}}{11}{figure.2.5}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
